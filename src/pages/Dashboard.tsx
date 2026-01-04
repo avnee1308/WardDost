@@ -200,7 +200,7 @@ const Dashboard = () => {
               </Label>
               {searchType === 'ward' ? (
                 <Select
-                  value={searchValue}
+                  value={searchValue || undefined}
                   onValueChange={setSearchValue}
                 >
                   <SelectTrigger>

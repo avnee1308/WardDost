@@ -385,7 +385,7 @@ const Complaints = () => {
                   <div>
                     <Label>Ward</Label>
                     <Select
-                      value={formData.ward_id}
+                      value={formData.ward_id || undefined}
                       onValueChange={(v) => setFormData({ ...formData, ward_id: v })}
                       required
                     >
