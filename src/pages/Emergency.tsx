@@ -198,15 +198,15 @@ const Emergency = () => {
               </div>
             </div>
             <div className="w-full md:w-64">
-              <Select
-                value={selectedWard}
-                onValueChange={setSelectedWard}
+            <Select
+                value={selectedWard || "all"}
+                onValueChange={(v) => setSelectedWard(v === "all" ? "" : v)}
               >
                 <SelectTrigger>
                   <SelectValue placeholder="All Wards" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="">All Wards</SelectItem>
+                  <SelectItem value="all">All Wards</SelectItem>
                   {wards.map((ward) => (
                     <SelectItem key={ward.id} value={ward.id}>
                       {ward.name}
