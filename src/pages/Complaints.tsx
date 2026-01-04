@@ -229,8 +229,8 @@ const Complaints = () => {
     }
   };
 
-  const handleStatusUpdate = async (complaintId: string, status: string) => {
-                    const { error } = await supabase
+  const handleStatusUpdate = async (complaintId: string, status: 'pending' | 'in_progress' | 'resolved' | 'rejected') => {
+    const { error } = await supabase
       .from('complaints')
       .update({ status, is_resolved: status === 'resolved' })
       .eq('id', complaintId);
@@ -529,7 +529,7 @@ const Complaints = () => {
                         {isAuthority && complaint.status !== 'resolved' && (
                           <Select
                             value={complaint.status}
-                            onValueChange={(v) => handleStatusUpdate(complaint.id, v)}
+                            onValueChange={(v) => handleStatusUpdate(complaint.id, v as 'pending' | 'in_progress' | 'resolved' | 'rejected')}
                           >
                             <SelectTrigger className="w-32">
                               <SelectValue />
@@ -674,7 +674,7 @@ const Complaints = () => {
                   <div key={review.id} className="p-4 bg-card rounded-lg border">
                     <div className="flex items-center justify-between mb-2">
                       <span className="font-medium text-sm">
-                        {review.profiles?.full_name || 'Anonymous'}
+                        Anonymous
                       </span>
                       <div className="flex items-center gap-1">
                         {[1, 2, 3, 4, 5].map((star) => (
